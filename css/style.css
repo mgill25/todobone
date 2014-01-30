@@ -7,3 +7,6 @@
 #todo-list .editing input.edit {
   display: inline;
 }
+#todoapp ul {
+  list-style-type: none;
+}
