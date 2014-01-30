@@ -81,7 +81,18 @@ app.AppView = Backbone.View.extend({
 
   addAll: function() {
     this.$('#todo-list').html();
-    app.todoList.each(this.addOne, this);
+    // filter the items based on status
+    switch(window.filter) {
+      case 'pending':
+        _.each(app.todoList.remaining(), this.addOne);
+        break;
+      case 'completed':
+        _.each(app.todoList.completed(), this.addOne);
+        break;
+      default:
+        app.todoList.each(this.addOne, this);
+        break;
+    }
   },
 
   newAttributes: function() {
@@ -91,6 +102,3 @@ app.AppView = Backbone.View.extend({
     };
   }
 });
-
-app.appView = new app.AppView();
-
